@@ -1,6 +1,7 @@
 const express = require('express');
 const cors = require('cors');
 const {testDatabaseConnection} = require('./config/database.js');
+const incidentsRouter = require("./routes/incidents");
 
 
 const app = express();
@@ -8,6 +9,8 @@ const app = express();
 //Middlewares
 app.use(cors());
 app.use(express.json());
+
+app.use("/api/incidents", incidentsRouter);
 
 
 //Checking database connection
