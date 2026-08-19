@@ -1,12 +1,17 @@
 const express = require('express');
 const cors = require('cors');
+const {testDatabaseConnection} = require('./config/database.js');
 
 
 const app = express();
 
+//Middlewares
 app.use(cors());
 app.use(express.json());
 
+
+//Checking database connection
+testDatabaseConnection();
 
 app.get('/api/health', (req,res) =>{
   res.json({
@@ -17,7 +22,7 @@ app.get('/api/health', (req,res) =>{
 
 
 const PORT = process.env.PORT || 5000;
-
+//Port 5000
 app.listen(PORT, () =>{
   console.log(`Server running on ${PORT}`);
 });
