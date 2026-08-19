@@ -9,7 +9,13 @@ const systemHealthRoutes = require("./routes/systemHealth");
 const app = express();
 
 //Middlewares
-app.use(cors());
+app.use(cors({
+  origin: [
+    'https://incident-explorer.vercel.app/',
+    'http://localhost:5173'
+  ]
+}));
+
 app.use(express.json());
 
 app.use("/api/incidents", incidentsRouter);
