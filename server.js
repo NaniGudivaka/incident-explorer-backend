@@ -3,6 +3,7 @@ const cors = require('cors');
 const {testDatabaseConnection} = require('./config/database.js');
 const incidentsRouter = require("./routes/incidents");
 const dashboardRoutes = require("./routes/dashboard");
+const systemHealthRoutes = require("./routes/systemHealth");
 
 
 const app = express();
@@ -13,6 +14,7 @@ app.use(express.json());
 
 app.use("/api/incidents", incidentsRouter);
 app.use("/api/dashboard", dashboardRoutes);
+app.use("/api/system-health", systemHealthRoutes);
 
 
 //Checking database connection
