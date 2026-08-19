@@ -11,8 +11,8 @@ const app = express();
 //Middlewares
 app.use(cors({
   origin: [
-    'https://incident-explorer.vercel.app/',
-    'http://localhost:5173'
+    "http://localhost:5173",
+      "https://incident-explorer.vercel.app/",
   ]
 }));
 
