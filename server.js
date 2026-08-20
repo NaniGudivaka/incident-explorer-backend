@@ -26,7 +26,7 @@ app.use("/api/dashboard", dashboardRoutes);
 app.use("/api/system-health", systemHealthRoutes);
 
 
-//Checking database connection
+//Checking database connection live
 testDatabaseConnection();
 
 app.get('/api/health', (req,res) =>{
@@ -39,6 +39,6 @@ app.get('/api/health', (req,res) =>{
 
 const PORT = process.env.PORT || 5000;
 //Port 5000
-app.listen(PORT, () =>{
+app.listen(PORT, '0.0.0.0', () =>{
   console.log(`Server running on ${PORT}`);
 });
