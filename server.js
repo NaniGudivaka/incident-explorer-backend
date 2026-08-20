@@ -11,9 +11,12 @@ const app = express();
 //Middlewares
 app.use(cors({
   origin: [
-    "http://localhost:5173",
+    
       "https://incident-explorer.vercel.app",
-  ]
+      "http://localhost:5173",
+  ],
+   methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+  credentials: true
 }));
 
 app.use(express.json());
