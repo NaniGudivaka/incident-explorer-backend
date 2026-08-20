@@ -1,6 +1,6 @@
 const express = require('express');
 const cors = require('cors');
-const {testDatabaseConnection} = require('./config/database.js');
+const { testDatabaseConnection } = require('./config/database.js');
 const incidentsRouter = require("./routes/incidents");
 const dashboardRoutes = require("./routes/dashboard");
 const systemHealthRoutes = require("./routes/systemHealth");
@@ -11,11 +11,10 @@ const app = express();
 //Middlewares
 app.use(cors({
   origin: [
-    
-      "https://incident-explorer.vercel.app",
-      "http://localhost:5173",
+   process.env.API_PROD_URL,
+   process.env.API_LOCAL_HOST_URL
   ],
-   methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+  methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
   credentials: true
 }));
 
@@ -29,7 +28,7 @@ app.use("/api/system-health", systemHealthRoutes);
 //Checking database connection live
 testDatabaseConnection();
 
-app.get('/api/health', (req,res) =>{
+app.get('/api/health', (req, res) => {
   res.json({
     success: true,
     message: 'Incident Explorer API is running',
@@ -39,6 +38,6 @@ app.get('/api/health', (req,res) =>{
 
 const PORT = process.env.PORT || 5000;
 //Port 5000
-app.listen(PORT, '0.0.0.0', () =>{
+app.listen(PORT, '0.0.0.0', () => {
   console.log(`Server running on ${PORT}`);
 });
